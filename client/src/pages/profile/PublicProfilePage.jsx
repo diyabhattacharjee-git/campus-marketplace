@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { Star, Calendar, Loader2, UserX } from 'lucide-react';
+import { Star, Calendar, Loader2, Package, UserX } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import ProductCard from '@/components/product/ProductCard';
 import { userService } from '@/services/userService';
+import { listingService } from '@/services/listingService';
 import { queryKeys } from '@/lib/queryClient';
 
 export default function PublicProfilePage() {
@@ -13,6 +15,14 @@ export default function PublicProfilePage() {
   const { data, isLoading, isError } = useQuery({
     queryKey: queryKeys.users.detail(id),
     queryFn: () => userService.getPublicProfile(id),
+  });
+
+  // Only fetched once we know the profile itself loaded — no point querying
+  // listings for a user id that turned out not to exist.
+  const { data: listingsRes, isLoading: listingsLoading } = useQuery({
+    queryKey: queryKeys.products.list({ seller: id }),
+    queryFn: () => listingService.getListings({ seller: id, limit: 8 }),
+    enabled: Boolean(data),
   });
 
   if (isLoading) {
@@ -71,13 +81,36 @@ export default function PublicProfilePage() {
         </CardContent>
       </Card>
 
-      {/* Listings / selling history / reviews sections land here once
-          Step 6 (Product Listings) and Step 13 (Reviews) exist to source
-          real data from — placeholder kept deliberately empty rather than
-          faked. */}
+      <div>
+        <h2 className="mb-3 font-display text-lg font-semibold">Listings</h2>
+        {listingsLoading && (
+          <div className="flex h-32 items-center justify-center text-muted-foreground">
+            <Loader2 className="mr-2 size-5 animate-spin" /> Loading listings…
+          </div>
+        )}
+        {!listingsLoading && (listingsRes?.data.listings.length ?? 0) === 0 && (
+          <Card>
+            <CardContent className="flex flex-col items-center gap-2 py-10 text-center text-sm text-muted-foreground">
+              <Package className="size-6" />
+              No active listings right now.
+            </CardContent>
+          </Card>
+        )}
+        {(listingsRes?.data.listings.length ?? 0) > 0 && (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {listingsRes.data.listings.map((listing) => (
+              <ProductCard key={listing._id} listing={listing} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Reviews land here once Step 13 (Reviews & Ratings) exists to
+          source real data from — deliberately left as an honest
+          placeholder rather than faked. */}
       <Card>
         <CardContent className="py-8 text-center text-sm text-muted-foreground">
-          Active listings and reviews will appear here once those features are built.
+          Reviews will appear here once that feature is built.
         </CardContent>
       </Card>
     </div>
