@@ -1,0 +1,25 @@
+export const ROUTES = {
+  HOME: '/',
+  LOGIN: '/login',
+  SIGNUP: '/signup',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/reset-password/:token',
+  VERIFY_EMAIL: '/verify-email/:token',
+
+  DASHBOARD: '/dashboard',
+  PRODUCTS: '/products',
+  PRODUCT_DETAILS: '/products/:id',
+  BUYER_REQUESTS: '/buyer-requests',
+  BUYER_REQUEST_DETAILS: '/buyer-requests/:id',
+  WISHLIST: '/wishlist',
+  ORDERS: '/orders',
+  CHAT: '/chat',
+  NOTIFICATIONS: '/notifications',
+  PROFILE: '/profile',
+  USER_PROFILE: '/users/:id',
+
+  ADMIN: '/admin',
+  ADMIN_LISTINGS: '/admin/listings',
+  ADMIN_USERS: '/admin/users',
+  ADMIN_REPORTS: '/admin/reports',
+};
