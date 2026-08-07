@@ -16,6 +16,11 @@ import VerifyEmailPage from '@/pages/auth/VerifyEmailPage';
 import DashboardPage from '@/pages/student/DashboardPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import PublicProfilePage from '@/pages/profile/PublicProfilePage';
+import ProductsPage from '@/pages/products/ProductsPage';
+import ProductDetailPage from '@/pages/products/ProductDetailPage';
+import CreateListingPage from '@/pages/products/CreateListingPage';
+import EditListingPage from '@/pages/products/EditListingPage';
+import MyListingsPage from '@/pages/products/MyListingsPage';
 
 export default function AppRoutes() {
   return (
@@ -40,6 +45,12 @@ export default function AppRoutes() {
           <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
           <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
           <Route path={ROUTES.USER_PROFILE} element={<PublicProfilePage />} />
+
+          <Route path={ROUTES.PRODUCTS} element={<ProductsPage />} />
+          <Route path={ROUTES.CREATE_PRODUCT} element={<CreateListingPage />} />
+          <Route path={ROUTES.EDIT_PRODUCT} element={<EditListingPage />} />
+          <Route path={ROUTES.PRODUCT_DETAILS} element={<ProductDetailPage />} />
+          <Route path={ROUTES.MY_LISTINGS} element={<MyListingsPage />} />
         </Route>
       </Route>
 
