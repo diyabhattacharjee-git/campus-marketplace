@@ -34,4 +34,12 @@ export const queryKeys = {
   users: {
     detail: (id) => ['users', 'detail', id],
   },
+  products: {
+    list: (params) => ['products', 'list', params],
+    detail: (id) => ['products', 'detail', id],
+    mine: ['products', 'mine'],
+  },
+  categories: {
+    list: ['categories', 'list'],
+  },
 };
