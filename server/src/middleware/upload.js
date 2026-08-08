@@ -19,3 +19,12 @@ export const uploadAvatar = multer({
   fileFilter,
   limits: { fileSize: MAX_FILE_SIZE_BYTES, files: 1 },
 }).single('avatar');
+
+const MAX_LISTING_IMAGE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB — product photos are larger than a small avatar crop
+const MAX_LISTING_IMAGES = 6;
+
+export const uploadListingImages = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: MAX_LISTING_IMAGE_SIZE_BYTES, files: MAX_LISTING_IMAGES },
+}).array('images', MAX_LISTING_IMAGES);
