@@ -41,16 +41,24 @@ export async function getListings(filters) {
     minPrice,
     maxPrice,
     search,
+    location,
+    includeSold,
     seller,
     sort = 'newest',
     page = 1,
     limit = 12,
   } = filters;
 
-  const query = { status: 'active' };
+  // "removed" (soft-deleted) listings never show in browse results.
+  // includeSold lets a buyer optionally see recently-sold items too (e.g.
+  // to gauge going prices) — off by default so browsing only shows what's
+  // actually available.
+  const query = includeSold ? { status: { $in: ['active', 'sold'] } } : { status: 'active' };
+
   if (category) query.category = category;
   if (condition) query.condition = condition;
   if (seller) query.seller = seller;
+  if (location) query.location = { $regex: location, $options: 'i' };
   if (minPrice !== undefined || maxPrice !== undefined) {
     query.price = {};
     if (minPrice !== undefined) query.price.$gte = minPrice;
