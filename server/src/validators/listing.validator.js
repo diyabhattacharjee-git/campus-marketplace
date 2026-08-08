@@ -31,6 +31,8 @@ export const listListingsValidator = [
   query('minPrice').optional().isFloat({ min: 0 }).toFloat(),
   query('maxPrice').optional().isFloat({ min: 0 }).toFloat(),
   query('search').optional().trim().isLength({ max: 100 }),
+  query('location').optional({ checkFalsy: true }).trim().isLength({ max: 100 }),
+  query('includeSold').optional().isBoolean().toBoolean(),
   query('seller').optional().isMongoId().withMessage('Invalid seller id'),
   query('sort').optional().isIn(['newest', 'oldest', 'price_asc', 'price_desc']),
   query('page').optional().isInt({ min: 1 }).toInt(),
