@@ -21,6 +21,11 @@ import ProductDetailPage from '@/pages/products/ProductDetailPage';
 import CreateListingPage from '@/pages/products/CreateListingPage';
 import EditListingPage from '@/pages/products/EditListingPage';
 import MyListingsPage from '@/pages/products/MyListingsPage';
+import BuyerRequestsPage from '@/pages/bidding/BuyerRequestsPage';
+import CreateBuyerRequestPage from '@/pages/bidding/CreateBuyerRequestPage';
+import BuyerRequestDetailPage from '@/pages/bidding/BuyerRequestDetailPage';
+import MyBuyerRequestsPage from '@/pages/bidding/MyBuyerRequestsPage';
+import MyBidsPage from '@/pages/bidding/MyBidsPage';
 
 export default function AppRoutes() {
   return (
@@ -51,6 +56,12 @@ export default function AppRoutes() {
           <Route path={ROUTES.EDIT_PRODUCT} element={<EditListingPage />} />
           <Route path={ROUTES.PRODUCT_DETAILS} element={<ProductDetailPage />} />
           <Route path={ROUTES.MY_LISTINGS} element={<MyListingsPage />} />
+
+          <Route path={ROUTES.CREATE_BUYER_REQUEST} element={<CreateBuyerRequestPage />} />
+          <Route path={ROUTES.MY_BUYER_REQUESTS} element={<MyBuyerRequestsPage />} />
+          <Route path={ROUTES.BUYER_REQUESTS} element={<BuyerRequestsPage />} />
+          <Route path={ROUTES.BUYER_REQUEST_DETAILS} element={<BuyerRequestDetailPage />} />
+          <Route path={ROUTES.MY_BIDS} element={<MyBidsPage />} />
         </Route>
       </Route>
 
