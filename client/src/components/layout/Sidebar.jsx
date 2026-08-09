@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutGrid, Package, Gavel, Heart, ClipboardList, User, Tags } from 'lucide-react';
+import { LayoutGrid, Package, Gavel, Heart, ClipboardList, User, Tags, HandCoins } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ROUTES } from '@/constants/routes';
 
@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { to: ROUTES.PRODUCTS, label: 'Marketplace', icon: Package },
   { to: ROUTES.MY_LISTINGS, label: 'My Listings', icon: Tags },
   { to: ROUTES.BUYER_REQUESTS, label: 'Bidding', icon: Gavel },
+  { to: ROUTES.MY_BIDS, label: 'My Bids', icon: HandCoins },
   { to: ROUTES.WISHLIST, label: 'Wishlist', icon: Heart },
   { to: ROUTES.ORDERS, label: 'Orders', icon: ClipboardList },
   { to: ROUTES.PROFILE, label: 'Profile', icon: User },
