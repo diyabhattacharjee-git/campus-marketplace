@@ -42,4 +42,13 @@ export const queryKeys = {
   categories: {
     list: ['categories', 'list'],
   },
+  buyerRequests: {
+    list: (params) => ['buyerRequests', 'list', params],
+    detail: (id) => ['buyerRequests', 'detail', id],
+    mine: ['buyerRequests', 'mine'],
+    bids: (id) => ['buyerRequests', 'bids', id],
+  },
+  bids: {
+    mine: ['bids', 'mine'],
+  },
 };
