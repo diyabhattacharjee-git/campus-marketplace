@@ -28,3 +28,9 @@ export const uploadListingImages = multer({
   fileFilter,
   limits: { fileSize: MAX_LISTING_IMAGE_SIZE_BYTES, files: MAX_LISTING_IMAGES },
 }).array('images', MAX_LISTING_IMAGES);
+
+export const uploadChatImage = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: MAX_FILE_SIZE_BYTES, files: 1 }, // same 2MB cap as avatars — chat images should be quick to send/load
+}).single('image');
