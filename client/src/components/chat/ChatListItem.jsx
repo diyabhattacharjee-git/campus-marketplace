@@ -31,7 +31,7 @@ export default function ChatListItem({ chat, isActive, isOnline }) {
           <p className={cn('truncate text-sm', hasUnread ? 'font-semibold' : 'font-medium')}>{other?.name}</p>
         </div>
         <p className={cn('truncate text-xs', hasUnread ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-          {chat.lastMessage?.hasImage ? '📷 Photo' : chat.lastMessage?.text || 'Say hello 👋'}
+          {chat.lastMessage?.hasImage ? 'Photo' : chat.lastMessage?.text || 'Say hello'}
         </p>
       </div>
 
