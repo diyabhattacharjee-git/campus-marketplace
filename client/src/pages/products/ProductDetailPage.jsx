@@ -10,6 +10,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import ConditionBadge from '@/components/product/ConditionBadge';
 
 import { listingService } from '@/services/listingService';
+import { chatService } from '@/services/chatService';
 import { useAuth } from '@/context/AuthContext';
 import { queryKeys } from '@/lib/queryClient';
 import { ROUTES } from '@/constants/routes';
@@ -40,6 +41,14 @@ export default function ProductDetailPage() {
       navigate(ROUTES.PRODUCTS);
     },
     onError: (err) => toast.error(err.message || 'Could not remove this listing'),
+  });
+
+  const startChatMutation = useMutation({
+    mutationFn: (sellerId) => chatService.startChat({ userId: sellerId, listingId: id }),
+    onSuccess: (res) => {
+      navigate(ROUTES.CHAT_DETAIL.replace(':id', res.data.chat._id));
+    },
+    onError: (err) => toast.error(err.message || 'Could not start a chat'),
   });
 
   if (isLoading) {
@@ -136,8 +145,17 @@ export default function ProductDetailPage() {
               </p>
             </div>
             {!isOwner && (
-              <Button variant="outline" size="sm" disabled title="Chat lands in Step 9">
-                <MessageCircle className="size-4" />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => startChatMutation.mutate(listing.seller._id)}
+                disabled={startChatMutation.isPending}
+              >
+                {startChatMutation.isPending ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <MessageCircle className="size-4" />
+                )}
                 Message
               </Button>
             )}
