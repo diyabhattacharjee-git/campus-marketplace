@@ -20,6 +20,7 @@ export const ROUTES = {
   WISHLIST: '/wishlist',
   ORDERS: '/orders',
   CHAT: '/chat',
+  CHAT_DETAIL: '/chat/:id',
   NOTIFICATIONS: '/notifications',
   PROFILE: '/profile',
   USER_PROFILE: '/users/:id',
