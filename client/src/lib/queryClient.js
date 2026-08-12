@@ -51,4 +51,9 @@ export const queryKeys = {
   bids: {
     mine: ['bids', 'mine'],
   },
+  chats: {
+    list: ['chats', 'list'],
+    detail: (id) => ['chats', 'detail', id],
+    messages: (id) => ['chats', 'messages', id],
+  },
 };
