@@ -26,6 +26,7 @@ import CreateBuyerRequestPage from '@/pages/bidding/CreateBuyerRequestPage';
 import BuyerRequestDetailPage from '@/pages/bidding/BuyerRequestDetailPage';
 import MyBuyerRequestsPage from '@/pages/bidding/MyBuyerRequestsPage';
 import MyBidsPage from '@/pages/bidding/MyBidsPage';
+import ChatPage from '@/pages/chat/ChatPage';
 
 export default function AppRoutes() {
   return (
@@ -62,6 +63,9 @@ export default function AppRoutes() {
           <Route path={ROUTES.BUYER_REQUESTS} element={<BuyerRequestsPage />} />
           <Route path={ROUTES.BUYER_REQUEST_DETAILS} element={<BuyerRequestDetailPage />} />
           <Route path={ROUTES.MY_BIDS} element={<MyBidsPage />} />
+
+          <Route path={ROUTES.CHAT} element={<ChatPage />} />
+          <Route path={ROUTES.CHAT_DETAIL} element={<ChatPage />} />
         </Route>
       </Route>
 
